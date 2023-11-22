@@ -51,7 +51,7 @@ const FilterComponent = ({ applyFilters }) => {
         if (type === "checkbox") {
           setFilter((prevFilter) => ({
             ...prevFilter,
-            [name]: checked ? value : "", // Use an empty string for unchecked checkboxes
+            [name]: checked ? value : null, // Use an empty string for unchecked checkboxes
           }));
         } else {
           setFilter((prevFilter) => ({
@@ -173,32 +173,59 @@ const FilterComponent = ({ applyFilters }) => {
         />
       </Grid>
 
-      <Grid item xs={12} md={6}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={filter.gender === "male"}
-                onChange={handleFilterChange}
-                name="gender"
-                value="male"
-              />
-            }
-            label="Male"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={filter.gender === "female"}
-                onChange={handleFilterChange}
-                name="gender"
-                value="female"
-              />
-            }
-            label="Female"
-          />
-        </FormGroup>
-      </Grid>
+<Grid item xs={12} md={6}>
+  <FormGroup>
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={filter.gender === "male"}
+          onChange={handleFilterChange}
+          name="gender"
+          value="male"
+        />
+      }
+      label="Male"
+    />
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={filter.gender === "female"}
+          onChange={handleFilterChange}
+          name="gender"
+          value="female"
+        />
+      }
+      label="Female"
+    />
+  </FormGroup>
+</Grid>
+
+<Grid item xs={12} md={6}>
+  <FormGroup>
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={filter.marriage_status === "married"}
+          onChange={handleFilterChange}
+          name="marriage_status"
+          value="married"
+        />
+      }
+      label="Married"
+    />
+    <FormControlLabel
+      control={
+        <Checkbox
+          checked={filter.marriage_status === "single"}
+          onChange={handleFilterChange}
+          name="marriage_status"
+          value="single"
+        />
+      }
+      label="Single"
+    />
+  </FormGroup>
+</Grid>
 
       <Grid item xs={12} md={6}>
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
