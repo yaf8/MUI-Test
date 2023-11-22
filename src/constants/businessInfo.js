@@ -1,0 +1,28 @@
+const businessInfo = {
+    tin_number: '',
+    principal_reg_no: '',
+    business_license_no: '',
+    owner_or_company_name: '',
+    nationality: '',
+    trade_name: '',
+    general_manager: '',
+    date_of_issuance: '',
+    renewal_date: '',
+    region: '',
+    city: '',
+    kebele: null,
+    po_box: null,
+    fax: null,
+    subcity: '',
+    woreda: '',
+    house_no: '',
+    tel_no: '',
+    email: '',
+    sector_of_business: '',
+    field_of_business: '',
+    capital: null,
+    username: '',
+    password: '',
+  };
+
+  export default businessInfo;

@@ -13,37 +13,51 @@ import {
   FormControlLabel,
   Grid,
 } from "@mui/material";
+import { reasons, regions } from "../constants";
+
+import { DatePicker, Space } from "antd";
+
+const { RangePicker } = DatePicker;
 
 const FilterComponent = ({ applyFilters }) => {
   const [filter, setFilter] = useState({
     reason: [],
     region: [],
-    date: "",
-    checkInDate: "",
-    checkOutDate: "",
+    date: null,
+    checkInDate: null,
+    checkOutDate: null,
     subcity: [],
     city: [],
-    startPrice: "",
-    endPrice: "",
-    gender: "", // Leave this as it is
-    marriage_status: "",
+    startPrice: null,
+    endPrice: null,
+    gender: null,
+    marriage_status: null,
     business_type: [],
   });
 
-  const handleFilterChange = (event) => {
-    const { name, value, type, checked } = event.target;
-
-    // Special handling for checkboxes
-    if (type === "checkbox") {
+  const handleFilterChange = (event, dateStrings) => {
+    if (dateStrings !== null && dateStrings === "date") {
+      console.log("Event : ", event);
       setFilter((prevFilter) => ({
         ...prevFilter,
-        [name]: checked ? value : "", // Use an empty string for unchecked checkboxes
+        checkInDate: event[0],
+        checkOutDate: event[1],
       }));
     } else {
-      setFilter((prevFilter) => ({
-        ...prevFilter,
-        [name]: value,
-      }));
+      const { name, value, type, checked } = event.target;
+
+      // Special handling for checkboxes
+      if (type === "checkbox") {
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          [name]: checked ? value : "", // Use an empty string for unchecked checkboxes
+        }));
+      } else {
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          [name]: value,
+        }));
+      }
     }
   };
 
@@ -65,9 +79,11 @@ const FilterComponent = ({ applyFilters }) => {
             onChange={handleFilterChange}
             renderValue={(selected) => selected.join(", ")}
           >
-            <MenuItem value="Leisure">Leisure</MenuItem>
-            <MenuItem value="Business">Business</MenuItem>
-            {/* Add more reason options */}
+            {reasons.map((reason) => (
+              <MenuItem key={reason} value={reason.value}>
+                {reason.label}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Grid>
@@ -84,11 +100,52 @@ const FilterComponent = ({ applyFilters }) => {
             onChange={handleFilterChange}
             renderValue={(selected) => selected.join(", ")}
           >
-            <MenuItem value="North">North</MenuItem>
-            <MenuItem value="South">South</MenuItem>
+            {regions.map((reason) => (
+              <MenuItem key={reason} value={reason.value}>
+                {reason.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <FormControl fullWidth sx={{ marginBottom: 2 }}>
+          <InputLabel id="city-label">City</InputLabel>
+          <Select
+            labelId="city-label"
+            id="city"
+            name="city"
+            multiple
+            value={filter.city}
+            onChange={handleFilterChange}
+            renderValue={(selected) => selected.join(", ")}
+          >
+            <MenuItem value="Addis Ababa">Addis Ababa</MenuItem>
+            <MenuItem value="Hawassa">Hawassa</MenuItem>
+            {}
             {/* Add more region options */}
           </Select>
         </FormControl>
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        {" "}
+        <Space direction="vertical" size={12}>
+          <RangePicker
+            id="dateRangePicker"
+            onChange={(dates, dateStrings) => handleFilterChange(dates, "date")}
+          />
+        </Space>{" "}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {" "}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {" "}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {" "}
       </Grid>
 
       <Grid item xs={12} md={6}>
@@ -118,11 +175,25 @@ const FilterComponent = ({ applyFilters }) => {
       <Grid item xs={12} md={6}>
         <FormGroup>
           <FormControlLabel
-            control={<Checkbox checked={filter.gender === "male"} onChange={handleFilterChange} name="gender" value="male" />}
+            control={
+              <Checkbox
+                checked={filter.gender === "male"}
+                onChange={handleFilterChange}
+                name="gender"
+                value="male"
+              />
+            }
             label="Male"
           />
           <FormControlLabel
-            control={<Checkbox checked={filter.gender === "female"} onChange={handleFilterChange} name="gender" value="female" />}
+            control={
+              <Checkbox
+                checked={filter.gender === "female"}
+                onChange={handleFilterChange}
+                name="gender"
+                value="female"
+              />
+            }
             label="Female"
           />
         </FormGroup>
