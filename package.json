@@ -51,6 +51,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.16.0",
     "recharts": "^2.8.0",
+    "rsuite": "^5.45.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {

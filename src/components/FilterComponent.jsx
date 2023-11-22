@@ -67,15 +67,18 @@ const FilterComponent = ({ applyFilters }) => {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel id="reason-label">Reason</InputLabel>
+    <Grid container sx={{ justifyContent: "center"}} spacing={2}>
+      <Grid item xs={10} sm={6} md={3}>
+        <FormControl fullWidth >
+          <InputLabel size="small" id="reason-label">
+            Reason
+          </InputLabel>
           <Select
             labelId="reason-label"
             id="reason"
             name="reason"
             multiple
+            size="small"
             value={filter.reason}
             onChange={handleFilterChange}
             renderValue={(selected) => selected.join(", ")}
@@ -89,14 +92,15 @@ const FilterComponent = ({ applyFilters }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} md={6}>
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel id="region-label">Region</InputLabel>
+      <Grid item xs={10} sm={6} md={3}>
+        <FormControl fullWidth>
+          <InputLabel size="small" id="region-label">Region</InputLabel>
           <Select
             labelId="region-label"
             id="region"
             name="region"
             multiple
+            size="small"
             value={filter.region}
             onChange={handleFilterChange}
             renderValue={(selected) => selected.join(", ")}
@@ -110,14 +114,17 @@ const FilterComponent = ({ applyFilters }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} md={6}>
-        <FormControl fullWidth sx={{ marginBottom: 2 }}>
-          <InputLabel id="city-label">City</InputLabel>
+      <Grid item xs={10} sm={6} md={3}>
+        <FormControl size="small" fullWidth sx={{ marginBottom: 2 }}>
+          <InputLabel size="small" id="city-label">
+            City
+          </InputLabel>
           <Select
             labelId="city-label"
             id="city"
             name="city"
             multiple
+            size="small"
             value={filter.city}
             onChange={handleFilterChange}
             renderValue={(selected) => selected.join(", ")}
@@ -130,30 +137,25 @@ const FilterComponent = ({ applyFilters }) => {
         </FormControl>
       </Grid>
 
-      <Grid item xs={12} md={6}>
+      <Grid item xs={10} sm={6} md={3}>
         {" "}
         <Space direction="vertical" size={12}>
           <RangePicker
+            md={3}
+            style={{width: "100%"}}
             id="dateRangePicker"
-            onChange={(dates, dateStrings) => handleFilterChange(dates, "date")}
+            onChange={(dates) => handleFilterChange(dates, "date")}
+            size="large"
           />
         </Space>{" "}
       </Grid>
-      <Grid item xs={12} md={6}>
-        {" "}
-      </Grid>
-      <Grid item xs={12} md={6}>
-        {" "}
-      </Grid>
-      <Grid item xs={12} md={6}>
-        {" "}
-      </Grid>
 
-      <Grid item xs={12} md={6}>
+      <Grid item xs={10} sm={6} md={3}>
         <TextField
           label="Start Price"
           type="number"
           name="startPrice"
+          size="small"
           value={filter.startPrice}
           onChange={handleFilterChange}
           fullWidth
@@ -161,11 +163,12 @@ const FilterComponent = ({ applyFilters }) => {
         />
       </Grid>
 
-      <Grid item xs={12} md={6}>
+      <Grid item xs={10} sm={6} md={3}>
         <TextField
           label="End Price"
           type="number"
           name="endPrice"
+          size="small"
           value={filter.endPrice}
           onChange={handleFilterChange}
           fullWidth
@@ -173,61 +176,66 @@ const FilterComponent = ({ applyFilters }) => {
         />
       </Grid>
 
-<Grid item xs={12} md={6}>
-  <FormGroup>
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={filter.gender === "male"}
-          onChange={handleFilterChange}
-          name="gender"
-          value="male"
-        />
-      }
-      label="Male"
-    />
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={filter.gender === "female"}
-          onChange={handleFilterChange}
-          name="gender"
-          value="female"
-        />
-      }
-      label="Female"
-    />
-  </FormGroup>
-</Grid>
+      <Grid item xs={10} sm={6} md={3}>
+        <FormGroup>
+          <div className="flex">
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={filter.gender === "male"}
+                  onChange={handleFilterChange}
+                  name="gender"
+                  value="male"
+                />
+              }
+              label="Male"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={filter.gender === "female"}
+                  onChange={handleFilterChange}
+                  name="gender"
+                  value="female"
+                />
+              }
+              label="Female"
+            />
+          </div>
+        </FormGroup>
+      </Grid>
 
-<Grid item xs={12} md={6}>
-  <FormGroup>
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={filter.marriage_status === "married"}
-          onChange={handleFilterChange}
-          name="marriage_status"
-          value="married"
-        />
-      }
-      label="Married"
-    />
-    <FormControlLabel
-      control={
-        <Checkbox
-          checked={filter.marriage_status === "single"}
-          onChange={handleFilterChange}
-          name="marriage_status"
-          value="single"
-        />
-      }
-      label="Single"
-    />
-  </FormGroup>
-</Grid>
+      <Grid item xs={10} sm={6} md={3}>
+        <FormGroup>
+          <div className="flex">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filter.marriage_status === "married"}
+                onChange={handleFilterChange}
+                name="marriage_status"
+                value="married"
+              />
+            }
+            label="Married"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={filter.marriage_status === "single"}
+                onChange={handleFilterChange}
+                name="marriage_status"
+                value="single"
+              />
+            }
+            label="Single"
+          />
+          </div>
 
-      <Grid item xs={12} md={6}>
+        </FormGroup>
+      </Grid>
+
+      <Grid item xs={10} sm={6} md={3}>
         <FormControl fullWidth sx={{ marginBottom: 2 }}>
           <InputLabel id="business-type-label">Business Type</InputLabel>
           <Select
@@ -248,7 +256,7 @@ const FilterComponent = ({ applyFilters }) => {
 
       {/* Add more filter components as needed */}
 
-      <Grid item xs={12}>
+      <Grid item >
         <Button variant="contained" onClick={handleApplyFilters}>
           Apply Filters
         </Button>

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 
 const CheckboxList = () => {
-  const initialValues = ["A", "B", "C", "D", "E", "Tewedegnalech` yeWenetuan nw."];
+  const initialValues = ["A", "B", "C", "D", "E", "T"];
   const [checkedValues, setCheckedValues] = useState(initialValues);
 
   const handleCheckboxChange = (value) => {

@@ -12,6 +12,7 @@ import HeaderFilteringDataGridPro from "./components/GridTest"
 import BasicLineChart from "./components/LineChart"
 import RowDataGrid from "./components/RowDataGrid"
 import 'animate.css'
+import TagPickerComponent from "./components/TagPickerComponent"
 
 
 
@@ -39,6 +40,7 @@ function App() {
         <div className="m-32" />
 
         <FilterComponent applyFilters={(filter) => {console.log(filter)}} />
+
 
       </div>
     </div>
