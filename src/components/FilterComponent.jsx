@@ -36,29 +36,30 @@ const FilterComponent = ({ applyFilters }) => {
   });
 
   const handleFilterChange = (event, dateStrings) => {
-    if (dateStrings !== null && dateStrings === "date") {
-      console.log("Event : ", event);
-      setFilter((prevFilter) => ({
-        ...prevFilter,
-        checkInDate: event[0],
-        checkOutDate: event[1],
-      }));
-    } else {
-      const { name, value, type, checked } = event.target;
-
-      // Special handling for checkboxes
-      if (type === "checkbox") {
+    if (event !== null)
+      if (dateStrings !== null && dateStrings === "date") {
+        console.log("Event : ", event);
         setFilter((prevFilter) => ({
           ...prevFilter,
-          [name]: checked ? value : "", // Use an empty string for unchecked checkboxes
+          checkInDate: event[0],
+          checkOutDate: event[1],
         }));
       } else {
-        setFilter((prevFilter) => ({
-          ...prevFilter,
-          [name]: value,
-        }));
+        const { name, value, type, checked } = event.target;
+
+        // Special handling for checkboxes
+        if (type === "checkbox") {
+          setFilter((prevFilter) => ({
+            ...prevFilter,
+            [name]: checked ? value : "", // Use an empty string for unchecked checkboxes
+          }));
+        } else {
+          setFilter((prevFilter) => ({
+            ...prevFilter,
+            [name]: value,
+          }));
+        }
       }
-    }
   };
 
   const handleApplyFilters = () => {
